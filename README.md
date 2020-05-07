@@ -6,23 +6,23 @@ This webpack plugin allows you to import all icons at once, while Purge Fontawes
 
 `webpack >= 4`
 
-## Instalation
+## Installation
 
 Install Purge Fontawesome
 
-```
+```shell
 npm install purge-fontawesome --save-dev
 ```
 
 Install Fontawesome svg core
 
-```
+```shell
 npm install @fortawesome/fontawesome-svg-core
 ```
 
 Install any icon set you need
 
-```
+```shell
 npm install @fortawesome/free-brands-svg-icons
 npm install @fortawesome/free-regular-svg-icons
 npm install @fortawesome/free-solid-svg-icons
@@ -79,6 +79,8 @@ Boom! Your now over 1MB bundle has been reduced to ~50kb.
 
 ## Require all installed sets at once
 
+Purge Fontawesome will find all installed sets and require them for you
+
 ```js
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fontawesome } from 'purge-fontawesome/fontawesome-svg-icons';
@@ -88,7 +90,7 @@ library.add(fontawesome);
 dom.watch();
 ```
 
-## Require each set seperatly
+## Require each set separately
 
 ### Free sets
 
