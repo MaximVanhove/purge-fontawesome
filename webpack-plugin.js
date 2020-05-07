@@ -34,11 +34,7 @@ const getCheckResource = function (paths) {
         const resourcePath = path.join(dir, resource);
         const icon = require(resourcePath);
 
-        if (contentContains(icon.iconName)) {
-            return doNotIgnore;
-        }
-
-        if (contentContains('/' + icon.unicode)) {
+        if (contentContains(`${icon.prefix} fa-${icon.iconName}`)) {
             return doNotIgnore;
         }
 
