@@ -125,12 +125,12 @@ dom.watch();
 
 ## CSS Pseudo-elements
 
-This plugins also scans for css pseudo elements.
+This plugin also scans for css pseudo elements.
 
 ```html
 <style>
     .icon::before {
-        display: inline-block;
+        display: none;
         font-style: normal;
         font-variant: normal;
         text-rendering: auto;
