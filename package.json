@@ -1,6 +1,6 @@
 {
     "name": "purge-fontawesome",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "This webpack plugin allows you to import all icons at once, while Purge Fontawesome will remove all unused icons.",
     "main": "webpack-plugin.js",
     "repository": {
