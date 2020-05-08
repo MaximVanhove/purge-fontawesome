@@ -10,19 +10,19 @@ This webpack plugin allows you to import all icons at once, while Purge Fontawes
 
 Install Purge Fontawesome
 
-```shell
+```
 npm install purge-fontawesome --save-dev
 ```
 
 Install Fontawesome svg core
 
-```shell
+```
 npm install @fortawesome/fontawesome-svg-core
 ```
 
 Install any icon set you need
 
-```shell
+```
 npm install @fortawesome/free-brands-svg-icons
 npm install @fortawesome/free-regular-svg-icons
 npm install @fortawesome/free-solid-svg-icons
@@ -47,6 +47,12 @@ library.add(far);
 dom.watch();
 ```
 
+`index.html`
+
+```html
+<i class="fas fa-smile"></i>
+```
+
 Include the webpack plugin in your webpack configuration
 
 `webpack.config.js`
@@ -55,10 +61,6 @@ Include the webpack plugin in your webpack configuration
 const path = require('path');
 const glob = require('glob');
 const PurgeFontawesomePlugin = require('purge-fontawesome/webpack-plugin');
-
-const PATHS = {
-    src: path.join(__dirname, 'src'),
-};
 
 module.exports = {
     mode: 'production',
@@ -69,7 +71,9 @@ module.exports = {
     },
     plugins: [
         new PurgeFontawesomePlugin({
-            paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
+            paths: [
+                glob.sync(path.join(__dirname, 'src/**/*'),  { nodir: true }),
+            ],
         }),
     ],
 };
@@ -119,29 +123,62 @@ library.add(fad, fal, far, fas);
 dom.watch();
 ```
 
+## CSS Pseudo-elements
+
+This plugins also scans for css pseudo elements.
+
+```html
+<style>
+    .icon::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .login::before {
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f007";
+    }
+</style>
+
+<span class="icon login"></span>
+```
+
 ## Options
 
-### Source path
+### Source paths
 
-Add the path to your source folder
+Add the paths you want to scan
 
 ```js
 new PurgeFontawesomePlugin({
-    paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
+    paths: glob.sync(path.join(__dirname, 'src/**/*'),  { nodir: true }),
+}),
+```
+
+### Multiple paths
+
+```js
+new PurgeFontawesomePlugin({
+    paths: [
+        glob.sync(path.join(__dirname, 'src/**/*'),  { nodir: true }),
+        glob.sync(path.join(__dirname, 'styles/**/*'),  { nodir: true }),
+    ],
 }),
 ```
 
 ### Specific extensions
 
-Using specific extensions can speed up the process
+Using specific extensions can speed up the scan process
 
 ```js
 new PurgeFontawesomePlugin({
-    paths: glob.sync(`${path.join(__dirname, 'src')}/**/*.html`,  { nodir: true }),
+    paths: glob.sync(path.join(__dirname, 'src/**/*.html'),  { nodir: true }),
 }),
 
 new PurgeFontawesomePlugin({
-    paths: glob.sync(`${path.join(__dirname, 'src')}/**/*.{html,js}`,  { nodir: true }),
+    paths: glob.sync(path.join(__dirname, 'src/**/*.{html,js}'),  { nodir: true }),
 }),
 ```
 
