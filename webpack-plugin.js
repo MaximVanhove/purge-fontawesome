@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 
-const getContent = function (paths) {
-    return paths.reduce((contents, fileName) => {
+const getContent = function (...paths) {
+    return paths.flat(2).reduce((contents, fileName) => {
         return contents.concat(fs.readFileSync(fileName, 'utf8'));
     }, '');
 };
