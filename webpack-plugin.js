@@ -38,7 +38,7 @@ const getCheckResource = function (paths) {
             return doNotIgnore;
         }
 
-        if (contentContains('/' + icon.unicode)) {
+        if (contentContains('\\' + icon.unicode)) {
             return doNotIgnore;
         }
 
